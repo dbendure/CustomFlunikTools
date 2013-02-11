@@ -3,8 +3,8 @@
 // @name        Flunik Tools
 // @namespace   FlunikTools
 // @description Tiberium Alliances Auto Leveling
-// @version     0.5.8
-// @author      Flunik
+// @version     0.5.9
+// @author      Flunik dbendure RobertT KRS_L
 // @include     http*://prodgame*.alliances.commandandconquer.com/*/index.aspx*
 // ==/UserScript==
 (function () {
