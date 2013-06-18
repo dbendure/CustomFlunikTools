@@ -2,7 +2,7 @@
 // @name        New Custom Flunik Tools
 // @namespace   FlunikTools
 // @description Upgrades Offense or Defense or Buildings. 
-// @version     Awesome 1.2.2
+// @version     Awesome 1.2.3
 // @author      dbendure
 // @include     http*://prodgame*.alliances.commandandconquer.com/*/index.aspx*
 // @updateURL   https://userscripts.org/scripts/source/166833.meta.js
@@ -429,28 +429,28 @@
                                     var name  = unit.get_UnitGameData_Obj().dn;
 									//console.log(HQ[0]);
 									
-								  if(unit.get_CurrentLevel() > 2){
+								  if(unit.get_CurrentLevel() > 3){
 									var unitHealthperCost = _this.GetUnitMaxHealth(unit.get_CurrentLevel(), ClientLib.Res.ResMain.GetInstance().GetUnit_Obj(unit.get_MdbUnitId()), false)/(ClientLib.Base.Util.GetUnitLevelResourceRequirements_Obj(unitlvlup1, unit.get_UnitGameData_Obj())[1].Count);
 									}
-									if(unit.get_CurrentLevel() <= 2){
+									if(unit.get_CurrentLevel() <= 3){
 									var unitHealthperCost = Math.pow( (_this.GetUnitMaxHealth(unit.get_CurrentLevel(), ClientLib.Res.ResMain.GetInstance().GetUnit_Obj(unit.get_MdbUnitId()), false)/(ClientLib.Base.Util.GetUnitLevelResourceRequirements_Obj(unitlvlup1, unit.get_UnitGameData_Obj())[0].Count)), -1);
 									}
 									defarr[defnum] =  unitHealthperCost;
 								    defarr.sort(function(a,b){return b-a});
 									//console.log(defarr[0], defarr[1]);
 									
-									if((defarr[0] >= defarr[1]) && ((unit.get_CurrentLevel() > 2)&&( unit.get_CurrentLevel() <= 3) ) && (defarr[1] != undefined)  ){
+									if((defarr[0] >= defarr[1]) && ((unit.get_CurrentLevel() > 3)&&( unit.get_CurrentLevel() <= 4) ) && (defarr[1] != undefined)  ){
 									
 									//console.log(defarr[0], defarr[1]);
 									defarr.shift();
 									}
-									if((defarr[0] >= defarr[1]) && (unit.get_CurrentLevel() > 3) && (defarr[1] != undefined)  ){
+									if((defarr[0] >= defarr[1]) && (unit.get_CurrentLevel() > 4) && (defarr[1] != undefined)  ){
 									defarr.sort(function(a,b){return a-b});
 									//console.log(defarr[0], defarr[1]);
 									defarr.shift();
 									}
 									
-									if((defarr[0] >= defarr[1]) && (unit.get_CurrentLevel() <= 2) && (defarr[1] != undefined)){
+									if((defarr[0] >= defarr[1]) && (unit.get_CurrentLevel() <= 3) && (defarr[1] != undefined)){
 									defarr.shift();
 									}
 									
@@ -678,7 +678,7 @@
 											//ClientLib.Net.CommunicationManager.GetInstance().SendCommand("UpgradeBuilding", offRT_obj, null, null, true);
                                  }
                                  
-                                 if (	(tech == ClientLib.Base.ETechName.Construction_Yard|| tech ==ClientLib.Base.ETechName.Command_Center || tech ==ClientLib.Base.ETechName.Defense_HQ ) && (building.get_CurrentLevel() < blvlLow) 	){
+                                 if (	(tech == ClientLib.Base.ETechName.Construction_Yard|| tech ==ClientLib.Base.ETechName.Command_Center || tech ==ClientLib.Base.ETechName.Defense_HQ ) && (building.get_CurrentLevel() < blvlLow) && (_this.totalRepairTime(airRT, vehRT, infRT) < 14400)	){
 										  
 										  var building_obj = {
 											cityid: city.get_Id(),
@@ -1032,7 +1032,7 @@
 											 //OwnProdModifiers.d[1].ConnectedLinkTypes.d[39].Value - OwnProdModifiers.d[4].ConnectedLinkTypes.d[40].Value
                               				//console.log(city.GetBuildingCache(bulid).DetailViewInfo.OwnProdModifiers.d);
                                             var silCryLinkType = 0;
-                                            
+                                            var silTibLinkType = 0;
                                             var silCryPro = city.GetBuildingCache(bulid).DetailViewInfo.OwnProdModifiers.d[ClientLib.Base.EModifierType.CrystalProduction].TotalValue;
 											//var silCryLinkType = city.GetBuildingCache(bulid).DetailViewInfo.OwnProdModifiers.d[ClientLib.Base.EModifierType.CrystalProduction].ConnectedLinkTypes.d[ClientLib.Base.ELinkType.HarvesterCrystalProduction].Value;
                                             var silTibPro = city.GetBuildingCache(bulid).DetailViewInfo.OwnProdModifiers.d[ClientLib.Base.EModifierType.TiberiumProduction].TotalValue;
@@ -1042,12 +1042,12 @@
                                             var silCost = ClientLib.Base.Util.GetUnitLevelResourceRequirements_Obj(buildinglvlup1, building.get_UnitGameData_Obj())[1].Count;
                                             
 											if(city.GetBuildingCache(bulid).DetailViewInfo.OwnProdModifiers.d[ClientLib.Base.EModifierType.CrystalProduction].ConnectedLinkTypes.d[ClientLib.Base.ELinkType.HarvesterCrystalProduction] != undefined){
-											var silCryLinkType = city.GetBuildingCache(bulid).DetailViewInfo.OwnProdModifiers.d[ClientLib.Base.EModifierType.CrystalProduction].ConnectedLinkTypes.d[ClientLib.Base.ELinkType.HarvesterCrystalProduction].Value;
+											silCryLinkType = city.GetBuildingCache(bulid).DetailViewInfo.OwnProdModifiers.d[ClientLib.Base.EModifierType.CrystalProduction].ConnectedLinkTypes.d[ClientLib.Base.ELinkType.HarvesterCrystalProduction].Value;
 											 var silTotalPro = silCryPro + silTibPro + silCryLinkType;
 											}
 											
-											if(silTibLinkType = city.GetBuildingCache(bulid).DetailViewInfo.OwnProdModifiers.d[ClientLib.Base.EModifierType.CrystalProduction].ConnectedLinkTypes.d[ClientLib.Base.ELinkType.HarvesterTiberiumProduction] != undefined){
-											var silTibLinkType = city.GetBuildingCache(bulid).DetailViewInfo.OwnProdModifiers.d[ClientLib.Base.EModifierType.CrystalProduction].ConnectedLinkTypes.d[ClientLib.Base.ELinkType.HarvesterTiberiumProduction].Value;
+											if(city.GetBuildingCache(bulid).DetailViewInfo.OwnProdModifiers.d[ClientLib.Base.EModifierType.TiberiumProduction].ConnectedLinkTypes.d[ClientLib.Base.ELinkType.HarvesterTiberiumProduction] != undefined){
+											silTibLinkType = city.GetBuildingCache(bulid).DetailViewInfo.OwnProdModifiers.d[ClientLib.Base.EModifierType.TiberiumProduction].ConnectedLinkTypes.d[ClientLib.Base.ELinkType.HarvesterTiberiumProduction].Value;
 											var silTotalPro = silCryPro + silTibPro + silCryLinkType + silTibLinkType;
 											}
 											
