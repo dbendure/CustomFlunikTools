@@ -1760,7 +1760,7 @@ Upgrade decisions
 
 
                     }
-                    // ClientLib.Data.CityUnits.prototype.get_OffenseUnits
+                    /*// ClientLib.Data.CityUnits.prototype.get_OffenseUnits
                     strFunction = ClientLib.Data.CityUnits.prototype.HasUnitMdbId.toString();
                     var searchString = "for (var b in {d:this.";
                     var startPos = strFunction.indexOf(searchString) + searchString.length;
@@ -1779,7 +1779,7 @@ Upgrade decisions
                     fn = Function('', strFunction);
                     ClientLib.Data.CityUnits.prototype.get_DefenseUnits = fn;
                     console.log("ClientLib.Data.CityUnits.prototype.get_DefenseUnits = function(){var $createHelper;return this." + fn_name + ";}");
-
+*/
 
                     FlunikTools.Main.getInstance();
                     window.FlunikTools.Main.getInstance().initialize();
