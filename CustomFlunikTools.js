@@ -12,9 +12,9 @@
 (function() {
     var FlunikTools_main = function() {
         try {
-            /*function CCTAWrapperIsInstalled() {
+            function CCTAWrapperIsInstalled() {
             	return (typeof (CCTAWrapper_IsInstalled) != 'undefined' && CCTAWrapper_IsInstalled);
-            }*/
+            }
 
             function createFlunikTools() {
                 console.log('FLUNIKTOOLS createFlunikTools');
