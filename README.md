@@ -10,6 +10,8 @@ TODO:
 
 -Get more time to do this...
 
+-Check if it works for 15.3 update...
+
 =================
 1) It chooses to upgrade Off RT buildings based on highest time greater than 4hours before it can do resource buildings.
 
