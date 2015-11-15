@@ -1,5 +1,13 @@
 CustomFlunikTools
 =================
+TODO:
+-Needs building cap factored in.
+-I want to figure out how to make a window in english for check boxes and such.
+-Make visuals in the window not like the one already out there that is not in english.
+-Get more time to do this...
+
+
+=================
 1) It chooses to upgrade Off RT buildings based on highest time greater than 4hours before it can do resource buildings.
 
 2) Building set is trying to push CY, CC, DefHQ 3 levels higher than the base. "DefFac needs taloired to plus three of the DefHQ"
